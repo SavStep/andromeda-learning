@@ -13,3 +13,10 @@ time.sleep(2.5)
 print("готово!")
 time.sleep(0.5)
 kalk(a,b)    
+
+k = 0
+for i in range(0,11):
+    x_sum = k + i
+    print(f"предыдушее число - {k}, текушее - {i}, сумма - {x_sum}")
+    k = i
+
