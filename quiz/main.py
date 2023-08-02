@@ -8,6 +8,6 @@ import function
 # food = function.cow_or_chiken()
 # print(f"{name} сейчас будет кушать {food}")
 
-questions = function.read_file("вопросы.txt")
-answers = function.read_file("ответы.txt")
+questions = function.read_file("quiz/вопросы.txt")
+answers = function.read_file("quiz/ответы.txt")
 function.quiz(questions, answers)
