@@ -2,6 +2,7 @@
 from config import TOKEN
 from telegram.ext import Updater, CommandHandler, CallbackContext
 from telegram import Update
+from pathlib import Path
 
 
 #блок функций
@@ -13,6 +14,10 @@ def start(update: Update, context: CallbackContext):
                               Вот что могу:
                               /hello - я могу с тобой поздароваться ;)
                               /bye - и я могу с тобой попращаться:0
+                              /contact - контакт автора :]
+                              /animation - я могу скинуть гифку ^_^
+                              /audio - также я могу скинуть звук морского
+                              льва*_* 
                               """)
     update.message.reply_photo("https://kartinkof.club/uploads/posts/2022-03/1648370947_4-kartinkof-club-p-nu-privet-mem-4.jpg")
     
@@ -35,7 +40,10 @@ def echo(update: Update, context: CallbackContext):
     message= " ".join(message)# объединяем сообщение
     update.message.reply_text(message) # отправляем сообщение
     print (message)
-    
+def animation(update: Update, context: CallbackContext):
+    update.message.reply_animation(f"https://hips.hearstapps.com/pop.h-cdn.co/assets/17/24/640x320/landscape-1497533116-not-dead.gif?resize=640:*")
+def send_audio(update: Update, context: CallbackContext):
+    update.message.reply_audio( Path(f"first_bot/audio/mp3_466228.mp3").read_bytes())
     
 #блок хендлеров
 start_handler =CommandHandler("start", start)
@@ -43,6 +51,8 @@ hello_handler =CommandHandler("hello", hello)
 bye_handler =CommandHandler("bye", bye)
 contact_handler =CommandHandler("contact", send_contact)
 echo_handler =CommandHandler("echo", echo)
+animation_handler =CommandHandler("animation", animation)
+audio_handler =CommandHandler("audio", send_audio)
 
 #бот
 updater = Updater(TOKEN) #ядро нашего бота 
@@ -55,7 +65,8 @@ dispatcher.add_handler(hello_handler)
 dispatcher.add_handler(bye_handler)
 dispatcher.add_handler(contact_handler)
 dispatcher.add_handler(echo_handler)
-
+dispatcher.add_handler(animation_handler)
+dispatcher.add_handler(audio_handler)
 
 print("бот запущен")
 updater.start_polling() #запускает обновления
