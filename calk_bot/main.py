@@ -1,10 +1,33 @@
 # блок импортов
 from telegram.ext import Updater, CallbackContext, CommandHandler, MessageHandler
-from config import TOKEN
+from contact_bot.config import TOKEN
 import random
 from telegram import Update
 from telegram.ext.filters import Filters
-#
+
+def start(update: Update, context: CallbackContext, message:list):
+    bot_name = context.bot.name
+    update.message.reply_text(f"""
+                              я бот калькулятор введи команду,а затем два числа
+                              /plus - складывать
+                              /minus - вычитать
+                              /multiply - умножать
+                              /divide - делить
+                              """)
+
+def get_factorial(update: Update, context: CallbackContext, message:list):
+    num = context.args
+    if not num or len(num) != 1 or not num[0].isdigit():
+        update.message.reply("Введите одно число")
+        return None
+    num = int(num.pop())
+    factorial = 1
+    factorial_list = []
+    for i in range (1, num+1):
+        factorial *= i
+        factorial_list.append(factorial)
+    update.message.reply_text(f"{factorial_list}")
+
 def make_eval(update: Update, context: CallbackContext, message:list):#не кал бек функция(вспомогательная)
     
     if not message or len(message) != 2:
