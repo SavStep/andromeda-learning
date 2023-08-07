@@ -1,6 +1,6 @@
 # блок импортов
 from telegram.ext import Updater, CallbackContext, CommandHandler, MessageHandler
-from contact_bot.config import TOKEN
+from config import TOKEN
 import random
 from telegram import Update
 from telegram.ext.filters import Filters
@@ -13,13 +13,15 @@ def getaway(update: Update, context: CallbackContext):
         with open("cows_and_buls\words.txt", encoding="utf-8") as file:
             words = file.read().split("\n")
         secret_word = random.choice(words) 
-        
+        update.message.reply_text(f"есть загаданное слово (у нас из 3 букв)если вы угадали букву,но она не в том месте это корова,если вы угадали букву и она в том месте это бык")
         context.user_data["секрет"] = secret_word#записываю
     else:
         secret_word = context.user_data["секрет"]#достаю
-    if len(secret_word) != len(my_word):
-            update.message.reply_text(f"буквы не совпадают")
-            return None
+    if my_word == "/start":
+        return None
+    elif len(secret_word) != len(my_word):
+        update.message.reply_text(f"буквы не совпадают")
+        return None
     bulls = 0
     cows = 0    
     for index, letter in enumerate(my_word):
@@ -35,7 +37,7 @@ def getaway(update: Update, context: CallbackContext):
         del context.user_data["секрет"]
     
 #блок обработчиков
-message_handler = MessageHandler(Filters.text, getaway)
+message_handler = MessageHandler(Filters.text,getaway)
 
 
 
