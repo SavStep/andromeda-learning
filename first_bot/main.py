@@ -1,5 +1,5 @@
 #блок импортов
-from contact_bot.config import TOKEN
+from contact_bot.turnip.config import TOKEN
 from telegram.ext import Updater, CommandHandler, CallbackContext
 from telegram import Update
 from pathlib import Path

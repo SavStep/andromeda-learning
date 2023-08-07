@@ -1,6 +1,6 @@
 # блок импортов
 from telegram.ext import Updater, CallbackContext, CommandHandler, MessageHandler
-from contact_bot.config import TOKEN
+from contact_bot.turnip.config import TOKEN
 import random
 from telegram import Update
 from telegram.ext.filters import Filters
