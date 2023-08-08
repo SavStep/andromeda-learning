@@ -78,7 +78,7 @@ contact_handler = ConversationHandler(
 dispatcher.add_handler(contact_handler)
 
 print("server started")
-updater.start_polling()
+updater.start_polling()--
 updater.idle()
 
 # git clone https://github.com/SavStep/andromeda-learning.git .
