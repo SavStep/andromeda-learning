@@ -3,7 +3,7 @@ from telegram.ext import Updater, CallbackContext, CommandHandler, MessageHandle
 from config import TOKEN
 import random
 from telegram import Update, ReplyKeyboardMarkup, ReplyKeyboardRemove
-from telegram.ext.filters import Filters
+from telegram.ext import filters
 from constans import *
 from stikers import *
 
@@ -126,9 +126,9 @@ def incline_words(animal: pymorphy2.analyzer.Parse, count: int):
 game_handler = ConversationHandler(
     entry_points=[CommandHandler("start", start)],
     states={
-        LEVEL: [MessageHandler(Filters.regex(f"^({GO})$"), chose_level)],
-        BEGIN: [MessageHandler(Filters.regex(f"^({EASY}|{MEDIUM}|{HARD})$"), begin)],
-        GAME: [MessageHandler(Filters.text & ~Filters.command, game)],
+        LEVEL: [MessageHandler(filters.Regex(f"^({GO})$"), chose_level)],
+        BEGIN: [MessageHandler(filters.Regex(f"^({EASY}|{MEDIUM}|{HARD})$"), begin)],
+        GAME: [MessageHandler(filters.Text & filters.Command, game)],
 
     },
     fallbacks=[CommandHandler("cancel", end), CommandHandler("stop", end)]
