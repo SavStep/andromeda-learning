@@ -17,9 +17,7 @@ def start(update: Update, context: CallbackContext):
 
 def begin(update: Update, context: CallbackContext):
     difficulty = update.message.text
-    count = LEVELS[difficulty]
     money = context.user_data["coins"]
-    difficulty = update.message.text
     if money < MEDIUM_PRICE and difficulty == MEDIUM:
         difficulty = EASY
         update.message.reply_text(
@@ -34,7 +32,7 @@ def begin(update: Update, context: CallbackContext):
     elif difficulty == HARD:
         money -= HARD_PRICE
         update.message.reply_text(f"вы преобрели хард")
-
+    count = LEVELS[difficulty]
     context.user_data["difficulty"] = count
 
     with open(f"cows_and_buls2/{difficulty}_{count}.txt", encoding="utf-8") as file:

@@ -2,7 +2,7 @@
 from telegram.ext import Updater, CallbackContext, CommandHandler, MessageHandler, ConversationHandler
 from telegram.ext.filters import Filters
 from telegram import Update, ReplyKeyboardMarkup, ReplyKeyboardRemove
-from cows_and_buls2.config import TOKEN
+from viktorina.config import TOKEN
 
 
 GENDER, NAME, SURNAME, NUMBER, RESULT = range(5)
@@ -78,7 +78,7 @@ contact_handler = ConversationHandler(
 dispatcher.add_handler(contact_handler)
 
 print("server started")
-updater.start_polling()--
+updater.start_polling()
 updater.idle()
 
 # git clone https://github.com/SavStep/andromeda-learning.git .
