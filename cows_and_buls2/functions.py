@@ -20,17 +20,21 @@ def begin(update: Update, context: CallbackContext):
     money = context.user_data["coins"]
     if money < MEDIUM_PRICE and difficulty == MEDIUM:
         difficulty = EASY
+        update.message.reply_sticker(MONEY_STIK)
         update.message.reply_text(
             "У вас недостаточно средств,к сожалению или к счастью мы вас переносим на уровень 'easy'")
     elif money < HARD_PRICE and difficulty == HARD:
         difficulty = EASY
+        update.message.reply_sticker(MONEY_STIK)
         update.message.reply_text(
             "У вас недостаточно средств,к сожалению или к счастью мы вас переносим на уровень 'easy'")
     elif difficulty == MEDIUM:
         money -= MEDIUM_PRICE
+        update.message.reply_sticker(LEVEL_STIK)
         update.message.reply_text(f"вы преобрели медиум")
     elif difficulty == HARD:
         money -= HARD_PRICE
+        update.message.reply_sticker(LEVEL_STIK)
         update.message.reply_text(f"вы преобрели хард")
     count = LEVELS[difficulty]
     context.user_data["difficulty"] = count
@@ -71,8 +75,8 @@ def game(update: Update, context: CallbackContext):
     my_word = update.message.text
     secret_word = context.user_data["секрет"]  # достаю
     if len(secret_word) != len(my_word):
-        update.message.reply_text(
-            f"Количество букв должно быть {len (my_word)}.")
+        update.message.reply_sticker(ANGRY_STIK)
+        update.message.reply_text(f"Количество букв должно быть {len (my_word)}.")
         return None
     bulls = 0
     cows = 0
@@ -84,10 +88,12 @@ def game(update: Update, context: CallbackContext):
                 cows += 1
     word_cow = incline_words(COW, cows)
     word_bull = incline_words(BULL, bulls)
+    #update.message.reply_sticker(BC_STIK)
     update.message.reply_text(
         f"в вашем слове {bulls} {word_bull} и {cows} {word_cow}", reply_markup=ReplyKeyboardRemove())
     # update.message.reply_text(f"{bulls}  и {len(secret_word)} ")
     if bulls == len(secret_word):
+        update.message.reply_sticker(VICTORY_STIK)
         update.message.reply_text(
             f"Поздравляем! Вы победили. Чтобы сыграть еще раз, нажмите /start", reply_markup=ReplyKeyboardRemove())
         change_money(context, plus=True)
