@@ -1,6 +1,6 @@
 # блок импортов
 from telegram.ext import Updater, CallbackContext, CommandHandler, MessageHandler
-from config import TOKEN
+from cows_and_buls2.config import TOKEN
 import random
 from telegram import Update
 from telegram.ext.filters import Filters

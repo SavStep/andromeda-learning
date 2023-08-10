@@ -2,7 +2,7 @@
 from telegram.ext import Updater, CallbackContext, CommandHandler, MessageHandler, ConversationHandler
 from telegram.ext.filters import Filters
 from telegram import Update, ReplyKeyboardMarkup, ReplyKeyboardRemove
-from config import TOKEN
+from cows_and_buls2.config import TOKEN
 
 
 GENDER, NAME, SURNAME, NUMBER, RESULT = range(5)

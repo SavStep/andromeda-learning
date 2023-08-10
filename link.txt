@@ -1,1 +1,3 @@
 https://docs.python-telegram-bot.org/en/v13.12/
+pip install -r requirements.txt
+python --version

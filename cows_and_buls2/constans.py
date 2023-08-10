@@ -1,7 +1,7 @@
 from telegram import ReplyKeyboardMarkup
 import pymorphy2
 GO = "вперёд"
-BEGIN, GAME, LEVEL = range(3)
+LEVEL, BEGIN, GAME  = range(3)
 EASY, MEDIUM, HARD = "izi", "medium", "hard"
 morph = pymorphy2.MorphAnalyzer()
 COW = morph.parse("корова") [0]
