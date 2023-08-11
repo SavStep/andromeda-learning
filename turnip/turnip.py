@@ -2,7 +2,7 @@
 from telegram.ext import Updater, CallbackContext, CommandHandler, MessageHandler, ConversationHandler
 from telegram.ext.filters import Filters
 from telegram import Update, ReplyKeyboardMarkup, ReplyKeyboardRemove
-from cows_and_buls2.config import TOKEN
+from viktorina.config import TOKEN
 import pymorphy2
 
 BEGIN, GAME, MOUSE= range(3)

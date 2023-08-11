@@ -72,7 +72,7 @@ def chose_level(update: Update, context: CallbackContext):
 
 def game(update: Update, context: CallbackContext):
     user_name = update.effective_user.first_name
-    my_word = update.message.text
+    my_word = update.message.text.lower()
     secret_word = context.user_data["секрет"]  # достаю
     if len(secret_word) != len(my_word):
         update.message.reply_sticker(ANGRY_STIK)
@@ -88,7 +88,6 @@ def game(update: Update, context: CallbackContext):
                 cows += 1
     word_cow = incline_words(COW, cows)
     word_bull = incline_words(BULL, bulls)
-    #update.message.reply_sticker(BC_STIK)
     update.message.reply_text(
         f"в вашем слове {bulls} {word_bull} и {cows} {word_cow}", reply_markup=ReplyKeyboardRemove())
     # update.message.reply_text(f"{bulls}  и {len(secret_word)} ")
